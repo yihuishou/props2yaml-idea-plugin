@@ -39,11 +39,11 @@ public class ConvertAction extends AnAction {
                 propertiesFile.rename(this, propertiesFile.getNameWithoutExtension() + ".yml");
                 propertiesFile.setBinaryContent(yamlContent.getBytes());
             } catch (IOException e) {
-                Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "Cannot rename file", e.getMessage(), NotificationType.ERROR));
+                Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "无法重命名文件", e.getMessage(), NotificationType.ERROR));
             }
         });
 
-        Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "File converted", "File converted successfully", NotificationType.INFORMATION));
+        Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "文件转换", "文件转换成功", NotificationType.INFORMATION));
     }
 
     @Nullable
@@ -51,13 +51,13 @@ public class ConvertAction extends AnAction {
         PsiFile selectedFile = anActionEvent.getData(LangDataKeys.PSI_FILE);
         if (selectedFile == null) {
             if (showNotifications) {
-                Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "No file selected", "Please select properties file first", NotificationType.ERROR));
+                Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "没有选中的文件", "请选中Properties文件", NotificationType.ERROR));
             }
             return null;
         }
         if (!StdFileTypes.PROPERTIES.equals(selectedFile.getFileType())) {
             if (showNotifications) {
-                Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "Incorrect file selected", "Please select properties file first", NotificationType.ERROR));
+                Notifications.Bus.notify(new Notification(GROUP_DISPLAY_ID, "无效的文件", "请选中Properties文件", NotificationType.ERROR));
             }
             return null;
         }
